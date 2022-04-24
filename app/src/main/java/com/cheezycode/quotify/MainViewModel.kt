@@ -1,6 +1,7 @@
 package com.cheezycode.quotify
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 
@@ -10,6 +11,9 @@ class MainViewModel(val context: Context): ViewModel() {
     
     init {
         quoteList = loadQuoteFromAssets()
+//
+//        Log.d("rishu",(++index).toString())
+//        Log.d("rishu",(index % quoteList.size).toString())
     }
 
     private fun loadQuoteFromAssets(): Array<Quote> {
@@ -23,9 +27,12 @@ class MainViewModel(val context: Context): ViewModel() {
         return gson.fromJson(json, Array<Quote>::class.java)
     }
 
-    fun getQuote() = quoteList[index]
+    fun getQuote() :Quote= quoteList[index]
 
-    fun nextQuote() = quoteList[++index % quoteList.size()]
 
-    fun previousQuote() = quoteList[(--index + quoteList.size()) % quoteList.size()]
+
+
+    fun nextQuote():Quote   = quoteList[++index]
+lateinit var a:Quote
+    fun previousQuote():Quote = quoteList[(--index ) ]
 }
